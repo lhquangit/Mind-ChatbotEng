@@ -23,6 +23,8 @@ connections.connect(host='127.0.0.1', port='19530')
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
 )
+
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
@@ -134,7 +136,7 @@ async def ask_and_answer(question):
 async def upload_csv(file: UploadFile = File(...)):
     upload_csv_to_db(file)
 
-
+# get file csv from database Postgress and add file csv to Milvus
 @app.get('/get_file')
 def all(db: Session = Depends(get_db)):
     lines = db.query(Ques_Ans).all()
