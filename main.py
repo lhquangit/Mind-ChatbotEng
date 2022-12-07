@@ -19,6 +19,8 @@ SQLALCHEMY_DATABASE_URL = "postgresql://minhson:test@127.0.0.1:5431/question"
 connections.connect(host='127.0.0.1', port='19530')
 
 
+
+
 # connect postgres
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
@@ -131,7 +133,7 @@ async def ask_and_answer(question):
     except:
         print("error")
 
-
+# upload file csv to database Postgress
 @app.post("/upload_csv")
 async def upload_csv(file: UploadFile = File(...)):
     upload_csv_to_db(file)
